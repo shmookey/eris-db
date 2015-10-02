@@ -2,6 +2,7 @@ package mempool
 
 import (
 	"bytes"
+	"errors"
 	"fmt"
 	"reflect"
 	"time"
@@ -9,6 +10,7 @@ import (
 	. "github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/common"
 	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/events"
 	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/p2p"
+	sm "github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/state"
 	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/types"
 	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/wire"
 )
@@ -16,8 +18,9 @@ import (
 var (
 	MempoolChannel = byte(0x30)
 
-	checkExecutedTxsMilliseconds = 1  // check for new mempool txs to send to peer
-	txsToSendPerCheck            = 64 // send up to this many txs from the mempool per check
+	checkExecutedTxsMilliseconds = 1   // check for new mempool txs to send to peer
+	txsToSendPerCheck            = 64  // send up to this many txs from the mempool per check
+	newBlockChCapacity           = 100 // queue to process this many ResetInfos per peer
 )
 
 // MempoolReactor handles mempool tx broadcasting amongst peers.
@@ -49,10 +52,11 @@ func (memR *MempoolReactor) GetChannels() []*p2p.ChannelDescriptor {
 
 // Implements Reactor
 func (memR *MempoolReactor) AddPeer(peer *p2p.Peer) {
-	// Each peer gets a go routine
-	// on which we broadcast transactions in the same order we applied them to our state.
-	// TCP + blocking ensure peers receive txs in order we apply them
-	go memR.broadcastTxRoutine(peer)
+	// Each peer gets a go routine on which we broadcast transactions in the same order we applied them to our state.
+	newBlockChan := make(chan ResetInfo, newBlockChCapacity)
+	peer.Data.Set(types.PeerMempoolChKey, newBlockChan)
+	timer := time.NewTicker(time.Millisecond * time.Duration(checkExecutedTxsMilliseconds))
+	go memR.broadcastTxRoutine(timer.C, newBlockChan, peer)
 }
 
 // Implements Reactor
@@ -79,21 +83,29 @@ func (memR *MempoolReactor) Receive(chID byte, src *p2p.Peer, msgBytes []byte) {
 		} else {
 			log.Info("Added valid tx", "tx", msg.Tx)
 		}
-		// Share tx.
-		// We use a simple shotgun approach for now.
-		// TODO: improve efficiency
-		for _, peer := range memR.Switch.Peers().List() {
-			if peer.Key == src.Key {
-				continue
-			}
-			peer.TrySend(MempoolChannel, msg)
-		}
-
+		// broadcasting happens from go routines per peer
 	default:
 		log.Warn(Fmt("Unknown message type %v", reflect.TypeOf(msg)))
 	}
 }
 
+// "block" is the new block being committed.
+// "state" is the result of state.AppendBlock("block").
+// Txs that are present in "block" are discarded from mempool.
+// Txs that have become invalid in the new "state" are also discarded.
+func (memR *MempoolReactor) ResetForBlockAndState(block *types.Block, state *sm.State) {
+	ri := memR.Mempool.ResetForBlockAndState(block, state)
+	for _, peer := range memR.Switch.Peers().List() {
+		peerMempoolCh := peer.Data.Get(types.PeerMempoolChKey).(chan ResetInfo)
+		select {
+		case peerMempoolCh <- ri:
+		default:
+			memR.Switch.StopPeerForError(peer, errors.New("Peer's mempool push channel full"))
+		}
+	}
+}
+
+// Just an alias for AddTx since broadcasting happens in peer routines
 func (memR *MempoolReactor) BroadcastTx(tx types.Tx) error {
 	return memR.Mempool.AddTx(tx)
 }
@@ -102,42 +114,34 @@ type PeerState interface {
 	GetHeight() int
 }
 
+type Peer interface {
+	IsRunning() bool
+	Send(byte, interface{}) bool
+	Get(string) interface{}
+}
+
 // send new mempool txs to peer, strictly in order we applied them to our state.
 // new blocks take chunks out of the mempool, but we've already sent some txs to the peer.
 // so we wait to hear that the peer has progressed to the new height, and then continue sending txs from where we left off
-func (memR *MempoolReactor) broadcastTxRoutine(peer *p2p.Peer) {
-	newBlockChan := make(chan types.EventData)
-	memR.evsw.(*events.EventSwitch).AddListenerForEvent("broadcastRoutine:"+peer.Key, types.EventStringNewBlock(), func(data types.EventData) {
-		newBlockChan <- data
-	})
-	timer := time.NewTicker(time.Millisecond * time.Duration(checkExecutedTxsMilliseconds))
-	currentHeight := memR.Mempool.state.LastBlockHeight
+func (memR *MempoolReactor) broadcastTxRoutine(tickerChan <-chan time.Time, newBlockChan chan ResetInfo, peer Peer) {
+	currentHeight := memR.Mempool.GetHeight()
 	var nTxs, txsSent int
+	var txs []types.Tx
 	for {
 		select {
-		case <-timer.C:
+		case <-tickerChan:
 			if !peer.IsRunning() {
 				return
 			}
 
 			// make sure the peer is up to date
-			peerState := peer.Data.Get(types.PeerStateKey).(PeerState)
+			peerState := peer.Get(types.PeerStateKey).(PeerState)
 			if peerState.GetHeight() < currentHeight {
 				continue
 			}
 
 			// check the mempool for new transactions
-			var txs []types.Tx
-			memR.Mempool.mtx.Lock()
-			nTxs = len(memR.Mempool.txs)
-			if txsSent < nTxs {
-				if nTxs > txsSent+txsToSendPerCheck {
-					txs = memR.Mempool.txs[txsSent : txsSent+txsToSendPerCheck]
-				} else {
-					txs = memR.Mempool.txs[txsSent:]
-				}
-			}
-			memR.Mempool.mtx.Unlock()
+			nTxs, txs = memR.getNewTxs(txsSent, currentHeight)
 
 			theseTxsSent := 0
 			start := time.Now()
@@ -154,17 +158,11 @@ func (memR *MempoolReactor) broadcastTxRoutine(peer *p2p.Peer) {
 			}
 			if theseTxsSent > 0 {
 				txsSent += theseTxsSent
-				log.Warn("Sent txs to peer", "ntxs", theseTxsSent, "took", time.Since(start), "total_sent", txsSent, "total_exec", nTxs)
+				log.Info("Sent txs to peer", "ntxs", theseTxsSent, "took", time.Since(start), "total_sent", txsSent, "total_exec", nTxs)
 			}
 
-		case blk := <-newBlockChan:
-			currentHeight = blk.(types.EventDataNewBlock).Block.Height
-
-			// the mempool is reset before this event fires
-			// check the reset info and figure out where to start sending from
-			memR.Mempool.mtx.Lock()
-			ri := memR.Mempool.resetInfo
-			memR.Mempool.mtx.Unlock()
+		case ri := <-newBlockChan:
+			currentHeight = ri.Height
 
 			// find out how many txs below what we've sent were included in a block and how many became invalid
 			included := tallyRangesUpTo(ri.Included, txsSent)
@@ -175,14 +173,36 @@ func (memR *MempoolReactor) broadcastTxRoutine(peer *p2p.Peer) {
 	}
 }
 
+// fetch new txs from the mempool
+func (memR *MempoolReactor) getNewTxs(txsSent, height int) (nTxs int, txs []types.Tx) {
+	memR.Mempool.mtx.Lock()
+	defer memR.Mempool.mtx.Unlock()
+
+	// if the mempool got ahead of us just return empty txs
+	if memR.Mempool.state.LastBlockHeight != height {
+		return
+	}
+
+	nTxs = len(memR.Mempool.txs)
+	if txsSent < nTxs {
+		if nTxs > txsSent+txsToSendPerCheck {
+			txs = memR.Mempool.txs[txsSent : txsSent+txsToSendPerCheck]
+		} else {
+			txs = memR.Mempool.txs[txsSent:]
+		}
+	}
+	return
+}
+
+// return the size of ranges less than upTo
 func tallyRangesUpTo(ranger []Range, upTo int) int {
 	totalUpTo := 0
 	for _, r := range ranger {
 		if r.Start >= upTo {
 			break
 		}
-		if r.Start+r.Length-1 > upTo {
-			totalUpTo += upTo - r.Start - 1
+		if r.Start+r.Length >= upTo {
+			totalUpTo += upTo - r.Start
 			break
 		}
 		totalUpTo += r.Length
