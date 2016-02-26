@@ -143,7 +143,7 @@ type BlockHeightFilter struct {
 
 func (this *BlockHeightFilter) Configure(fd *FilterData) error {
 	op := fd.Op
-	var val int
+	var val uint32
 	if fd.Value == "min" {
 		val = 0
 	} else if fd.Value == "max" {
