@@ -4,11 +4,16 @@ import (
 	"fmt"
 	edb "github.com/shmookey/eris-db/erisdb"
 	"os"
+	"C"
 )
 
 
 
-//export main
+//export foo
+func foo() {
+	fmt.Println("DONTMINDME55891")
+}
+
 func main() {
 	var baseDir string
 	if len(os.Args) == 2 {
