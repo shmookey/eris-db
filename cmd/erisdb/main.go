@@ -6,7 +6,9 @@ import (
 	"os"
 )
 
-// TODO the input stuff.
+
+
+//export main
 func main() {
 	var baseDir string
 	if len(os.Args) == 2 {
