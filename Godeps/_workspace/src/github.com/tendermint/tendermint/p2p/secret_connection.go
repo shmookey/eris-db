@@ -16,13 +16,13 @@ import (
 	"net"
 	"time"
 
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/golang.org/x/crypto/nacl/box"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/golang.org/x/crypto/nacl/secretbox"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/golang.org/x/crypto/ripemd160"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/golang.org/x/crypto/nacl/box"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/golang.org/x/crypto/nacl/secretbox"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/golang.org/x/crypto/ripemd160"
 
-	acm "github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/account"
-	. "github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/common"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/wire"
+	acm "github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/account"
+	. "github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/common"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/wire"
 )
 
 // 2 + 1024 == 1026 total frame size

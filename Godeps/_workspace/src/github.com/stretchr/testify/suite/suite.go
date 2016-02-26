@@ -8,8 +8,8 @@ import (
 	"regexp"
 	"testing"
 
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/stretchr/testify/assert"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/stretchr/testify/require"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/stretchr/testify/assert"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/stretchr/testify/require"
 )
 
 var matchMethod = flag.String("m", "", "regular expression to select tests of the suite to run")

@@ -11,13 +11,13 @@ import (
 	"sort"
 	"time"
 
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/gorilla/websocket"
-	. "github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/common"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/events"
-	ctypes "github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/rpc/core/types"
-	. "github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/rpc/types"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/types"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/wire"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/gorilla/websocket"
+	. "github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/common"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/events"
+	ctypes "github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/rpc/core/types"
+	. "github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/rpc/types"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/types"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/wire"
 )
 
 func RegisterRPCFuncs(mux *http.ServeMux, funcMap map[string]*RPCFunc) {

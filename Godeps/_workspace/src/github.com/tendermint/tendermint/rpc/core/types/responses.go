@@ -1,10 +1,10 @@
 package core_types
 
 import (
-	acm "github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/account"
-	stypes "github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/state/types"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/types"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/wire"
+	acm "github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/account"
+	stypes "github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/state/types"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/types"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/wire"
 )
 
 type ResultGetStorage struct {

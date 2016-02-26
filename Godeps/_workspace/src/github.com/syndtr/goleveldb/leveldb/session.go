@@ -13,12 +13,12 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/syndtr/goleveldb/leveldb/errors"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/syndtr/goleveldb/leveldb/iterator"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/syndtr/goleveldb/leveldb/journal"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/syndtr/goleveldb/leveldb/storage"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/syndtr/goleveldb/leveldb/util"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/syndtr/goleveldb/leveldb/errors"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/syndtr/goleveldb/leveldb/iterator"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/syndtr/goleveldb/leveldb/journal"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/syndtr/goleveldb/leveldb/opt"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/syndtr/goleveldb/leveldb/storage"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/syndtr/goleveldb/leveldb/util"
 )
 
 type ErrManifestCorrupted struct {

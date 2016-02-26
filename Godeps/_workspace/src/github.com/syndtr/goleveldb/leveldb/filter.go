@@ -7,7 +7,7 @@
 package leveldb
 
 import (
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/syndtr/goleveldb/leveldb/filter"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/syndtr/goleveldb/leveldb/filter"
 )
 
 type iFilter struct {

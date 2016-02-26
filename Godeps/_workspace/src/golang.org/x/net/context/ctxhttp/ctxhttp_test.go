@@ -11,7 +11,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/golang.org/x/net/context"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/golang.org/x/net/context"
 )
 
 const (

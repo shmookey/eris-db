@@ -2,11 +2,11 @@ package erisdb
 
 import (
 	"fmt"
-	ep "github.com/eris-ltd/eris-db/erisdb/pipe"
+	ep "github.com/shmookey/eris-db/erisdb/pipe"
 	"sync"
 	"time"
 
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/types"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/types"
 )
 
 var (

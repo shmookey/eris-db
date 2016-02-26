@@ -1,12 +1,12 @@
 package testdata
 
 import (
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/account"
-	ctypes "github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/rpc/core/types"
-	stypes "github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/state/types"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/types"
-	edb "github.com/eris-ltd/eris-db/erisdb"
-	ep "github.com/eris-ltd/eris-db/erisdb/pipe"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/account"
+	ctypes "github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/rpc/core/types"
+	stypes "github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/state/types"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/types"
+	edb "github.com/shmookey/eris-db/erisdb"
+	ep "github.com/shmookey/eris-db/erisdb/pipe"
 )
 
 var testDataJson = `{

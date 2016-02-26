@@ -1,12 +1,12 @@
 package core
 
 import (
-	bc "github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/blockchain"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/consensus"
-	mempl "github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/mempool"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/p2p"
-	stypes "github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/state/types"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/types"
+	bc "github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/blockchain"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/consensus"
+	mempl "github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/mempool"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/p2p"
+	stypes "github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/state/types"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/types"
 )
 
 var blockStore *bc.BlockStore

@@ -1,11 +1,11 @@
 package filters
 
 import (
-	edb "github.com/eris-ltd/eris-db/erisdb"
-	ep "github.com/eris-ltd/eris-db/erisdb/pipe"
+	edb "github.com/shmookey/eris-db/erisdb"
+	ep "github.com/shmookey/eris-db/erisdb/pipe"
 
-	stypes "github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/state/types"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/types"
+	stypes "github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/state/types"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/types"
 )
 
 var testDataJson = `{

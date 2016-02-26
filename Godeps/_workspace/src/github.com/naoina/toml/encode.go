@@ -8,7 +8,7 @@ import (
 
 	"go/ast"
 
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/naoina/go-stringutil"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/naoina/go-stringutil"
 )
 
 const (

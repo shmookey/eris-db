@@ -2,8 +2,8 @@ package testdata
 
 import (
 	"fmt"
-	"github.com/eris-ltd/eris-db/files"
-	"github.com/eris-ltd/eris-db/server"
+	"github.com/shmookey/eris-db/files"
+	"github.com/shmookey/eris-db/server"
 	"os"
 	"path"
 

@@ -1,12 +1,12 @@
 package mock
 
 import (
-	ep "github.com/eris-ltd/eris-db/erisdb/pipe"
-	td "github.com/eris-ltd/eris-db/test/testdata/testdata"
+	ep "github.com/shmookey/eris-db/erisdb/pipe"
+	td "github.com/shmookey/eris-db/test/testdata/testdata"
 
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/account"
-	ctypes "github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/rpc/core/types"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/types"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/account"
+	ctypes "github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/rpc/core/types"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/types"
 )
 
 // Base struct.

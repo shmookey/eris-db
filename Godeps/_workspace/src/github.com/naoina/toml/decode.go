@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/naoina/toml/ast"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/naoina/toml/ast"
 )
 
 const (

@@ -8,19 +8,19 @@ import (
 	"path"
 	"strings"
 
-	ep "github.com/eris-ltd/eris-db/erisdb/pipe"
-	"github.com/eris-ltd/eris-db/server"
+	ep "github.com/shmookey/eris-db/erisdb/pipe"
+	"github.com/shmookey/eris-db/server"
 
 	"github.com/eris-ltd/mint-client/mintx/core"
 
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/log15"
-	acm "github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/account"
-	. "github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/common"
-	cfg "github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/config"
-	tmcfg "github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/config/tendermint"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/node"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/p2p"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/types"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/log15"
+	acm "github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/account"
+	. "github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/common"
+	cfg "github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/config"
+	tmcfg "github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/config/tendermint"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/node"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/p2p"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/types"
 )
 
 var log = log15.New("module", "eris/erisdb_server")

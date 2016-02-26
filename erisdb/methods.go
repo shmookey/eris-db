@@ -5,11 +5,11 @@ import (
 	"encoding/hex"
 	"strings"
 
-	ep "github.com/eris-ltd/eris-db/erisdb/pipe"
-	rpc "github.com/eris-ltd/eris-db/rpc"
+	ep "github.com/shmookey/eris-db/erisdb/pipe"
+	rpc "github.com/shmookey/eris-db/rpc"
 
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/types"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/wire"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/types"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/wire"
 )
 
 // TODO use the method name definition file.

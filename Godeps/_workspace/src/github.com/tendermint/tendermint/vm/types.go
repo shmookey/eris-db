@@ -1,8 +1,8 @@
 package vm
 
 import (
-	. "github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/common"
-	ptypes "github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/permission/types"
+	. "github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/common"
+	ptypes "github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/permission/types"
 )
 
 const (

@@ -1,8 +1,8 @@
 package server
 
 import (
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/naoina/toml"
-	"github.com/eris-ltd/eris-db/files"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/naoina/toml"
+	"github.com/shmookey/eris-db/files"
 )
 
 // Standard configuration file for the server.

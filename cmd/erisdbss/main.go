@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/gin-gonic/gin"
-	ess "github.com/eris-ltd/eris-db/erisdb/erisdbss"
-	"github.com/eris-ltd/eris-db/server"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/gin-gonic/gin"
+	ess "github.com/shmookey/eris-db/erisdb/erisdbss"
+	"github.com/shmookey/eris-db/server"
 	"os"
 	"path"
 )

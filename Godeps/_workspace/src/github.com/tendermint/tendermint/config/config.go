@@ -1,11 +1,11 @@
 package config
 
 import (
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/naoina/toml"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/naoina/toml"
 	"sync"
 	"time"
 
-	. "github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/common"
+	. "github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/common"
 )
 
 type Config interface {

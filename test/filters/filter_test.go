@@ -2,8 +2,8 @@ package filters
 
 import (
 	"fmt"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/stretchr/testify/suite"
-	. "github.com/eris-ltd/eris-db/erisdb/pipe"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/stretchr/testify/suite"
+	. "github.com/shmookey/eris-db/erisdb/pipe"
 	"sync"
 	"testing"
 )

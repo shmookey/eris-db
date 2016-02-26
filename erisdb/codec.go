@@ -4,8 +4,8 @@ import (
 	"io"
 	"io/ioutil"
 
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/wire"
-	rpc "github.com/eris-ltd/eris-db/rpc"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/wire"
+	rpc "github.com/shmookey/eris-db/rpc"
 )
 
 // Codec that uses tendermints 'binary' package for JSON.

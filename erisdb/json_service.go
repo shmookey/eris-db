@@ -2,10 +2,10 @@ package erisdb
 
 import (
 	"encoding/json"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/gin-gonic/gin"
-	ep "github.com/eris-ltd/eris-db/erisdb/pipe"
-	rpc "github.com/eris-ltd/eris-db/rpc"
-	"github.com/eris-ltd/eris-db/server"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/gin-gonic/gin"
+	ep "github.com/shmookey/eris-db/erisdb/pipe"
+	rpc "github.com/shmookey/eris-db/rpc"
+	"github.com/shmookey/eris-db/server"
 	"net/http"
 )
 

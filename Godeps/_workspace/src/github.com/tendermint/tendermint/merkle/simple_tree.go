@@ -29,10 +29,10 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/code.google.com/p/go.crypto/ripemd160"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/code.google.com/p/go.crypto/ripemd160"
 
-	. "github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/common"
-	"github.com/eris-ltd/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/wire"
+	. "github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/common"
+	"github.com/shmookey/eris-db/Godeps/_workspace/src/github.com/tendermint/tendermint/wire"
 )
 
 func SimpleHashFromTwoHashes(left []byte, right []byte) []byte {
