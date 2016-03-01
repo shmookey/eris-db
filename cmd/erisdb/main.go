@@ -30,5 +30,5 @@ func Run() {
 }
 
 func main() {
-  return run()
+  run()
 }
