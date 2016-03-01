@@ -7,14 +7,8 @@ import (
 	"C"
 )
 
-
-
-//export Foo
-func Foo() {
-	fmt.Println("DONTMINDME55891")
-}
-
-func main() {
+//export Run
+func Run() {
 	var baseDir string
 	if len(os.Args) == 2 {
 		baseDir = os.Args[1]
@@ -33,4 +27,8 @@ func main() {
 	// TODO For now.
 	fmt.Println("DONTMINDME55891")
 	<-proc.StopEventChannel()
+}
+
+func main() {
+  return run()
 }
