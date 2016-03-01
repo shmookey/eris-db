@@ -9,8 +9,8 @@ import (
 
 
 
-//export foo
-func foo() {
+//export Foo
+func Foo() {
 	fmt.Println("DONTMINDME55891")
 }
 
