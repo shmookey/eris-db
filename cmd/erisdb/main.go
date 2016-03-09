@@ -7,6 +7,11 @@ import (
 	"C"
 )
 
+//export RunFrom
+func RunFrom(dataDir *C.char) {
+  Run(C.GoString(dataDir))
+}
+
 //export Run
 func Run(dataDir string) {
 	var baseDir string
