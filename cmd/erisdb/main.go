@@ -8,13 +8,16 @@ import (
 )
 
 //export Run
-func Run() {
+func Run(dataDir string) {
 	var baseDir string
 	if len(os.Args) == 2 {
 		baseDir = os.Args[1]
 	} else {
 		baseDir = os.Getenv("HOME") + "/.erisdb"
 	}
+  if dataDir != "" {
+    baseDir = dataDir
+  }
 
 	proc, errSt := edb.ServeErisDB(baseDir)
 	if errSt != nil {
@@ -30,5 +33,5 @@ func Run() {
 }
 
 func main() {
-  Run()
+  Run("")
 }
