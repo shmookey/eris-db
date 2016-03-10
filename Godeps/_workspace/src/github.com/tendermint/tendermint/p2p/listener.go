@@ -81,7 +81,7 @@ func NewDefaultListener(protocol string, lAddr string) Listener {
 	}
 	// Otherwise just use the local address...
 	if extAddr == nil {
-		extAddr = getNaiveExternalAddress(listenerPort)
+		extAddr = NewNetAddressString(lAddr) // getNaiveExternalAddress(listenerPort)
 	}
 	if extAddr == nil {
 		PanicCrisis("Could not determine external address!")
